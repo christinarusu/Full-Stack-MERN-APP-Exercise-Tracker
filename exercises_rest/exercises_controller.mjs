@@ -14,11 +14,10 @@ const app = express();
 
 app.use(express.json());
 
-// connect to Mongo
-exercises.connect()
-  .then(() => console.log("✅ Connected to MongoDB"))
-  .catch(console.error);
-
+app.listen(PORT, async () => {
+    await exercises.connect()
+    console.log(`Server listening on port ${PORT}...`);
+});
 
 /**
  * 
@@ -153,3 +152,4 @@ app.delete('/exercises/:id', asyncHandler(async (req, res) => {
 
 
 }))
+
